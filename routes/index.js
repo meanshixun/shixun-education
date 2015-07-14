@@ -89,6 +89,8 @@ var searchCourse = function (keyword,fn) {
     });
 }
 
+
+
 //修改课程
 var updateCourse = function(id,course,fn){
     MongoClient.connect(url, function (err, db) {
@@ -198,6 +200,8 @@ router.route('/api/editCourse/:id')
             if(err) {
                 res.status(500).end();
             }
+
+            res.json('edit success');
         });
 
     });
@@ -211,6 +215,8 @@ router.route('/api/deleteCourse/:id')
             if(err){
                 res.status(500).end();
             }
+
+            res.json('delete success');
         });
     });
 

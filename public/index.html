@@ -44,7 +44,8 @@
                                     <ul ng-if="group.subtitle.length" class="nav nav-stacked smallrow" ng-show="group.active">
                                         <li ng-if="group.active"  ng-class="{active:subtitle.active}"
                                             ng-repeat="sub in group.subtitle" ng-click="Nav.activeSub(sub)" class="minirow">
-                                            <a href="{{sub.Url}}">
+                                            <!--<a href="{{sub.Url}}">-->
+                                            <a ui-sref="{{sub.statename}}">
                                                 <img ng-src="{{sub.imageUrl}}">
                                                 {{sub.name}}
                                             </a>
@@ -55,13 +56,14 @@
                         </nav>
                     </div>
                 </div>
-                <div ng-view class="mainpanel"></div>
+                <div ui-view class="mainpanel"></div>
             </div>
     </div>
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/bootstrap-gh-pages/ui-bootstrap-tpls-0.13.0.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>

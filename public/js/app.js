@@ -1,7 +1,7 @@
 /**
  * Created by xiner on 7/7/15.
  */
-var education = angular.module('demo', ['ui.bootstrap','ngRoute']);
+var education = angular.module('demo', ['ui.bootstrap','ui.router']);
 
 education.controller('NavController', function ($location) {
 
@@ -14,6 +14,7 @@ education.controller('NavController', function ($location) {
             title: '科目',
             imageUrl:'/images/managesubject.png',
             active:true,
+            statename:'course',
             Url:'/',
             subtitle:[
                 ]
@@ -28,23 +29,29 @@ education.controller('NavController', function ($location) {
                     imageUrl:'/images/calender.png',
                     active:true,
                     Url:'#/schedule/info',
-                     name:'基本信息管理'
+                    statename:'infomanage',
+
+                    name:'基本信息管理'
                 },
                 {
                     imageUrl:'/images/icon.png',
                     active:false,
+                    statename:'rowclass',
                     Url:'#/schedule/rowclass',
                     name:'排课'
                 },
                 {
                     imageUrl:'/images/calender.png',
                     active:false,
+                    statename:'signup',
                     Url:'#/schedule/enroll',
                     name:'报名'
                 },
                 {
                     imageUrl:'/images/icon.png',
                     active:false,
+                    statename:'sign',
+
                     Url:'#/schedule/sign',
                     name:'签到'
                 }
@@ -59,6 +66,7 @@ education.controller('NavController', function ($location) {
                 {
                     imageUrl:'/images/calender.png',
                     name:'考核管理',
+                    statename:'exam',
                     Url:'#/exam/exammanage',
                     active : true
 
@@ -66,6 +74,7 @@ education.controller('NavController', function ($location) {
                 {
                     imageUrl: '/images/icon.png',
                     name: '成绩管理',
+                    statename:'score',
                     Url:'#/exam/score',
                     active:false
                 }
@@ -76,6 +85,7 @@ education.controller('NavController', function ($location) {
             imageUrl:'/images/managesubject.png',
             active:false,
             Url:'/search',
+            statename:'lookup',
             subtitle:[
         ]
 
@@ -113,34 +123,42 @@ education.controller('NavController', function ($location) {
 
 
 
-education.config(function($routeProvider){
+education.config(function($stateProvider, $urlRouterProvider){
+    $urlRouterProvider.otherwise("/");
 
-    $routeProvider.when('/schedule/enroll',{
+    $stateProvider.state('signup',{
+        url:'/schedule/enroll',
         templateUrl : '/schedule/scheduleenroll.html',
         //controller : 'schedulenrollController'
-    }).when('/schedule/info',{
+    }).state('infomanage',{
+        url:'/schedule/info',
         templateUrl:'/schedule/scheduleinfo.html',
         //controller :'scheduleinfoController'
-    }).when('/schedule/rowclass',{
+    }).state('rowclass',{
+        url:'/schedule/rowclass',
         templateUrl :'/schedule/schedulerowclass.html',
         //controller : 'schedulerowclassController'
-    }).when('/schedule/sign',{
+    }).state('sign',{
+        url:'/schedule/sign',
         templateUrl:'/schedule/schedulesign.html',
         //controller: 'schedulesignController'
-    }).when('/exam/exammanage',{
+    }).state('exam',{
+        url:'/exam/exammanage',
         templateUrl : '/exam/exammanage.html',
         //controller :'exammanageController'
-    }).when('/exam/score',{
+    }).state('score',{
+        url:'/exam/score',
         templateUrl:'/exam/scoremanage.html',
         //controller:'scoreController'
-    }).when('/',{
+    }).state('course',{
+        url:'/',
         templateUrl :'/course/course.html',
         controller:'CourseController',
         controllerAs: 'cou'
-    }).when('/search',{
-        templateUrl : '/search/search.html',
-        controller : 'SearchController',
-        controllerAs : 'search'
+    //}).when('/search',{
+    //    templateUrl : '/search/search.html',
+    //    controller : 'SearchController',
+    //    controllerAs : 'search'
     })
     ;
 });

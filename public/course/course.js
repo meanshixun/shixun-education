@@ -3,11 +3,14 @@ angular
     .module('demo')
     .controller('CourseController', CourseController);
 
-CourseController.$inject = ['$http','$scope'];
+CourseController.$inject = ['$http','$scope','$rootScope'];
 
 /* @ngInject */
-function CourseController($http,$scope) {
+function CourseController($http,$scope,$rootScope) {
+
     var course = this;
+    window.$rootScope = $rootScope;
+
     course.content='';
     course.items = [];
     course.filterItem = 'name';
@@ -27,14 +30,26 @@ function CourseController($http,$scope) {
     course.saveCourse = saveCourse;
     course.deleteCourse = deleteCourse;
 
+    course.pageChanged = pageChanged;
+    $scope.totalItems = '';
+    course.currentPage = 1;
+    course.maxSize = 5;
 
     course.ID ='';
 
 
-    $scope.$watch('course.filterName', function(oldValue, newValue) {
-        $scope.filterObj = {};
-        $scope.filterObj[course.filterItem] = course.filterName;
-    });
+    //$scope.$watch('course.filterName', function(oldValue, newValue) {
+    //    $scope.filterObj = {};
+    //    $scope.filterObj[course.filterItem] = course.filterName;
+    //});
+
+
+        //$scope.watch('course.items', function (oldValue, newValue) {
+        //    $scope.totalItems='';
+        //    $scope.totalItems = course.items.length;
+        //    //alert(course.totalItems);
+        //});
+
     //init();
 
     //得到科目的详情
@@ -44,12 +59,14 @@ function CourseController($http,$scope) {
     }
 
 
+    //wat();
 
 
 
 /*
 ****************************************************************************************************
  */
+
 
     getCourse();
 
@@ -71,11 +88,13 @@ function CourseController($http,$scope) {
             major : course.major
         }).success(function(){
             console.log('add course success');
+            $('#myModal1').modal('hide');
+            getCourse();
+
+
         });
 
-        getCourse();
 
-        $('#myModal1').modal('hide');
     }
 
     //得到所有的课程
@@ -83,6 +102,7 @@ function CourseController($http,$scope) {
         $http.get('/api/addcourse')
             .success(function (data) {
                 course.items = data;
+                //course.totalItems = course.items.length;
             }).error(function () {
                 console.log('error')
             });
@@ -99,6 +119,8 @@ function CourseController($http,$scope) {
                 }
             }).success(function (data) {
                 course.items = data;
+                //course.totalItems = course.items.length;
+
             });
     }
 
@@ -132,18 +154,23 @@ function CourseController($http,$scope) {
             details : course.details,
             state : course.state,
             major : course.major
-        }).success(function(){
+        }).success(function(data){
             $('#myModal').modal('hide');
+            getCourse();
         });
     }
 
+    function pageChanged () {
+
+    };
 
     //删除数据
     function deleteCourse(item){
         console.log(item._id);
         $http.delete('/api/deleteCourse/'+item._id)
-            .success(function(){
-                console.log('remove success');
+            .success(function(data){
+
+                getCourse();
             });
     }
 
