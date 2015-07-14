@@ -1,0 +1,134 @@
+<form class="form-inline">
+    <div class="form-group">
+        <!--<label >查询条件</label>-->
+
+
+        <!--<select class="form-control" ng-model="cou.filterItem">-->
+            <!--<option value="name" selected>科目名称</option>-->
+            <!--<option value="number">科目编号</option>-->
+            <!--<option value="major">所属专业</option>-->
+        <!--</select>-->
+    </div>
+    <div class="form-group">
+        <!--<label>查询内容</label>-->
+        <input class="form-control" ng-model="cou.keyword">
+    </div>
+    <div class="form-group">
+        <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="cou.searchCourse()">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+        </button>
+    </div>
+</form>
+<table class="table table-hover ">
+    <thead>
+    <tr>
+        <th>科目编号</th>
+        <th>科目名称</th>
+        <th>所属专业</th>
+        <th>科目状态</th>
+        <th>课程具体内容</th>
+        <th>&nbsp;</th>
+        <th>
+            <button ng-click="cou.addmodal()" type="button" class="btn btn-default pull-right" aria-label="Left Align">
+                <span class="glyphicon glyphicon-plus" ></span>
+            </button>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in cou.items | filter : {number: condition}">
+        <td>
+            <button popover-placement="right" popover="{{cou.getDetails(item)}}" class="btn btn-default">
+                {{item.number}}
+            </button>
+        </td>
+        <td>{{item.name}}</td>
+        <td>{{item.major}}</td>
+        <td>{{item.state}}</td>
+        <td>{{item.details}}</td>
+        <td><a ng-click="cou.deleteCourse(item)">删除</a></td>
+        <td ng-if="item.state"><a ng-click="cou.edit(item)">编辑</a></td>
+    </tr>
+    </tbody>
+</table>
+<!--科目增加模块-->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1">
+    <form ng-submit="cou.add()">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel1">信息增加</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group"><!-- 将 label 元素包裹在 .form-group 中可以获得最好的排列。-->
+                        <label class="control-label">科目编号</label>
+                        <input ng-model="cou.number" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">科目名称</label>
+                        <input ng-model="cou.name" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">科目状态</label>
+                        <input ng-model="cou.state" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">所属专业</label>
+                        <input ng-model="cou.major" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">课程具体内容</label>
+                        <input ng-model="cou.details" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" ng-click="cou.cancel()">取消</button>
+                    <button type="submit" class="btn btn-primary">保存</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!--科目编辑模块-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <form ng-submit="cou.saveCourse()">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">信息编辑</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group"><!-- 将 label 元素包裹在 .form-group 中可以获得最好的排列。-->
+                        <label class="control-label">科目编号</label>
+                        <input ng-model="cou.number" class="form-control"><!--form-control 类的 <input>、<textarea> 和 <select> 元素都将被默认设置宽度属性为 width: 100%;。-->
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">科目名称</label>
+                        <input ng-model="cou.name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">课程具体内容</label>
+                        <input ng-model="cou.details" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">科目状态</label>
+                        <input ng-model="cou.state" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">所属专业</label>
+                        <input ng-model="cou.major" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" ng-click="cou.cancel()">取消</button>
+                    <button type="submit" class="btn btn-primary">保存</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

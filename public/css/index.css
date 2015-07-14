@@ -1,0 +1,155 @@
+.all{
+    width: 100%;
+}
+.mainpanel{
+    display: inline-block;
+    width: 1130px;
+    float: right;
+}
+.pulldown{
+    display: block;
+    padding: 15px 0 15px 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    outline: 0 none;
+
+}
+.mainpull{
+    background-color: #666;
+    border-color: #666;
+}
+.navbaredit {
+    background-color: #337ab7;
+    border-radius: 0px;
+    border: hidden;
+    margin: 0px;
+    height: 58px;
+    width: 100%;
+    box-shadow: 1px 1px 4px #58708a;
+}
+#header_logo{
+    position: absolute;
+    display: block;
+    padding-top: 10px;
+    height: 58px;
+}
+#header_word{
+    margin-left: 55px;
+    display: block;
+    padding-left:0px;
+    padding-top: 18px;
+    font-family: "Î¢ÈíÑÅºÚ", Helvetica, Arial, sans-serif;
+    color: #ffffff;
+    font-size: 25px;
+}
+.navleft{
+    width: 200px;
+    margin-left: 0;
+    padding:0 ;
+    height: 1000px;
+    color: #aeb2b7;
+    background-color: #dbddde;
+}
+.loginUser{
+    padding-top: 13px;
+    right: 10px;
+    float: right;
+}
+.logo-text{
+    color: #ffffff;
+    font-size :30px;
+    padding-top: 15px;
+    float: left;
+}
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
+    border-radius: 0;
+}
+
+.logout-style{
+    right: 10px;
+    padding-top: 20px;
+    float: right;
+}
+.navframe{
+    width:220px;
+    border-right-color: #000;
+    border-bottom-style: none;
+    box-shadow: 2px 0 5px #bdb6b6;
+    height: 600px;
+    padding: 0px;
+    margin-right: 0px;
+    float: left;
+}
+/*.fixed {*/
+    /*position: fixed;*/
+/*}*/
+/* sidebar */
+.bs-docs-sidebar {
+    padding-left: 20px;
+    /*margin-top: 20px;*/
+    /*margin-bottom: 20px;*/
+}
+/* all links */
+.bs-docs-sidebar .nav>li>a {
+    color: #999;
+    border-left: 2px solid transparent;
+    padding: 4px 20px;
+    font-size: 18px;
+    font-weight: 400;
+    padding-top: 10px;
+}
+
+/* nested links */
+.bs-docs-sidebar .nav .nav>li>a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 45px;
+    font-size: 15px;
+}
+/* active & hover links */
+.bs-docs-sidebar .nav>.active>a,
+.bs-docs-sidebar .nav>li>a:hover,
+.bs-docs-sidebar .nav>li>a:focus {
+    color: #227dc5;
+    text-decoration: none;
+    background-color: transparent;
+    border-left-style: solid;
+    border-left-color: #227dc5;
+    width: 100%;
+}
+/* all active links */
+.bs-docs-sidebar .nav>.active>a,
+.bs-docs-sidebar .nav>.active:hover>a,
+.bs-docs-sidebar .nav>.active:focus>a {
+    font-weight: 700;
+}
+/* nested active links */
+.bs-docs-sidebar .nav .nav>.active>a,
+.bs-docs-sidebar .nav .nav>.active:hover>a,
+.bs-docs-sidebar .nav .nav>.active:focus>a {
+    font-weight: 500;
+}
+
+/* hide inactive nested list */
+.bs-docs-sidebar .nav ul.nav {
+    /*display: none;*/
+}
+/* show active nested list */
+.bs-docs-sidebar .nav>.active>ul.nav {
+    display: block;
+}
+.arow{
+    margin-top: 15px;
+}
+.aarow{
+    padding-top: 5px;
+}
+.smallrow{
+    padding-top: 5px;
+}
+.minirow{
+    padding-top: 8px;
+}
